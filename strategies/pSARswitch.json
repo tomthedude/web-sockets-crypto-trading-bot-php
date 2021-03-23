@@ -1,0 +1,17 @@
+{
+    "name": "pSARswitch",
+    "desc": "Buy when pSAR is switching",
+    "isActive": true,
+    "indicators": {"pSAR": null},
+    "buyCon": {
+        "min_score": 2,
+        "conditions": ["$pSAR[0] < $price[0]","$pSAR[1] > $price[1]"],
+        "maxSpreadCheckedPriceToAsk": 1
+    },
+    "sellCon": {
+        "min_score": 3,
+        "conditions": ["$pSAR[0] > $price[0]","$pSAR[1] > $price[1]","$pSAR[2] < $price[2]"],
+        "maxSpreadCheckedPriceToBid": 1
+    },
+    "DCA": false
+}

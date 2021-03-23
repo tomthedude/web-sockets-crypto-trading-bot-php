@@ -1,0 +1,17 @@
+{
+    "name": "pSARswitchBBandsVol",
+    "desc": "Buy when pSAR is switching",
+    "isActive": true,
+    "indicators": {"pSAR": null, "avgV": 50, "bbands": "middle", "candleColor": null, "ema200": 200},
+    "buyCon": {
+        "min_score": 5,
+        "conditions": ["$pSAR[0] < $price[0]","$price[0] > $ema200[0]", "$candleColor[0] > 0", "$avgV[0]*1.2  <= $vol[0]", "$price[0] <= $bbands[0]" ],
+        "maxSpreadCheckedPriceToAsk": 1
+    },
+    "sellCon": {
+        "min_score": 2,
+        "conditions": ["$pSAR[0] > $price[0]","$pSAR[1] < $price[1]"],
+        "maxSpreadCheckedPriceToBid": 1
+    },
+    "DCA": false
+}

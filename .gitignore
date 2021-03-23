@@ -1,0 +1,13 @@
+backtesting_results
+simulations/*
+med.php
+conf.json
+conf.*
+all_pids.json
+conf.json
+conf.json
+all_pids.json
+logs
+msgs_to_web
+msgs_from_web
+cmnds

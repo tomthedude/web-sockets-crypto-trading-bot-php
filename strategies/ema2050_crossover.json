@@ -1,0 +1,17 @@
+{
+    "name": "ema2050_crossover",
+    "desc": "Buy after 2 candles when ema 20 cross ema 50, ",
+    "isActive": true,
+    "indicators": {"ema": 20, "ema1": 50, "emaLastCrossover": "20|50"},
+    "buyCon": {
+        "min_score": 4,
+        "conditions": ["$ema[0] > $ema1[0]","$emaLastCrossover[0] >= 2", "$ema[0] > $ema[1]","$emaLastCrossover[0] < 4"],
+        "maxSpreadCheckedPriceToAsk": 1
+    },
+    "sellCon": {
+        "min_score": 3,
+        "conditions": ["$ema[0] < $ema1[0]","$ema[1] > $ema1[1]","$emaLastCrossover[0] > 1"],
+        "maxSpreadCheckedPriceToBid": 1
+    },
+    "DCA": false
+}

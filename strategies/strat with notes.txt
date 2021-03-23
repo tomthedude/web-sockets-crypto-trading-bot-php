@@ -1,0 +1,50 @@
+{
+    "name": "pSAR Swtich",
+    "desc": "Buy when pSAR is switching",
+    "isActive": true,
+    "indicators": ["pSAR"], //ema20,ema50, bbands etc..
+    "buyCon": {
+        "min_score": 2,
+        "conditions": ["$pSAR < $price","$pSAR_prev > $price_prev"]
+    },//minimum score, conditions
+    "sellCon": {
+        "min_score": 2,
+        "conditions": ["$pSAR > $price","$pSAR_prev < $price_prev"]
+    },//minimum score, conditions
+    "DCA": false
+}
+
+{
+    "name": "EMA_20_50_CROSSOVER",
+    "desc": "Buy when ema 20 cross ema 50",
+    "isActive": true,
+    "indicators": {"bbands": "upper", "bbands1": "lower", "rsi": 14},//.optional: ema20: 20, ema50: 50
+    "emaSpread": "20|50"} // ema spread of ema20 and ema50
+    
+    "buyCon": {
+        "min_score": 3,
+        "conditions": ["$ema > $ema1","$ema_prev < $ema1_prev"]//optional ,"$price > $ema"
+        // maybe do "conditions": {"$ema > $ema1": "1","$ema_prev < $ema1_prev": "1", "$price < $bbands": "1"}
+    },
+    "sellCon": {
+        "min_score": 2,
+        "conditions": ["$ema < $ema1","$ema_prev > $ema1_prev"]
+    },
+    "DCA": false
+}
+
+{
+    "name": "EMA_20_50_CROSSOVER",
+    "desc": "Buy when ema 20 cross ema 50",
+    "isActive": true,
+    "indicators": {"ema": 20, "ema1": 50, "bbands": "middle", "emaSpread": "20|50", "emaLastCrossover": "20|50"},
+    "buyCon": {
+        "min_score": 5,
+        "conditions": ["$ema > $ema1","$ema_prev < $ema1_prev", "$price < $bbands","$emaSpread > $emaSpread_prev", "$emaSpread > 0.5", "$emaLastCrossover < 5"]
+    },
+    "sellCon": {
+        "min_score": 2,
+        "conditions": ["$ema < $ema1","$ema_prev > $ema1_prev"]
+    },
+    "DCA": false
+}

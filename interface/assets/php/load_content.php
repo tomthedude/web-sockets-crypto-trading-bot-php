@@ -1,0 +1,1 @@
+<?php echo file_exists($file_path) ? file_get_contents($file_path) : '404 page not found'; ?>

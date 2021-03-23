@@ -1,0 +1,376 @@
+				<div class="row">
+					<div class="col-md-6 col-lg-12 col-xl-6">
+						<div class="row">
+							<div class="col-md-12 col-lg-6 col-xl-6">
+								<section class="panel panel-featured-left panel-featured-primary">
+									<div class="panel-body">
+										
+										<div class="widget-summary">
+											<div class="widget-summary-col widget-summary-col-icon">
+												<div class="summary-icon bg-primary">
+													<i class="fa fa-life-ring"></i>
+												</div>
+											</div>
+											<div class="widget-summary-col">
+												<div class="summary">
+													<h4 class="title">Total Profit</h4>
+													<div class="info">
+														<strong class="amount" id="total_pl">1281</strong>
+														<span class="text-primary">BTC</span>
+													</div>
+												</div>
+												<div class="summary-footer">
+													<a class="text-muted text-uppercase">(view all)</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</section>
+							</div>
+							<div class="col-md-12 col-lg-6 col-xl-6">
+								<section class="panel panel-featured-left panel-featured-secondary">
+									<div class="panel-body">
+										<div class="widget-summary">
+											<div class="widget-summary-col widget-summary-col-icon">
+												<div class="summary-icon bg-secondary">
+													<i class="fa fa-btc"></i>
+												</div>
+											</div>
+											<div class="widget-summary-col">
+												<div class="summary">
+													<h4 class="title">Est. BTC Value</h4>
+													<div class="info">
+														<strong class="amount" id="btcValue" style="float:left;">$ 14,890.30</strong>
+														<div class="small-chart" id="sparklineLine"></div>
+														<div class="clearfix"></div>
+													</div>
+												</div>
+												<div class="summary-footer">
+												
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</section>
+							</div>
+							<div class="clearfix"></div>
+							<div class="col-md-12 col-lg-6 col-xl-6">
+								<section class="panel panel-featured-left panel-featured-tertiary">
+									<div class="panel-body">
+										<div class="widget-summary">
+											<div class="widget-summary-col widget-summary-col-icon">
+												<div class="summary-icon bg-tertiary">
+													<i class="fa fa-shopping-cart"></i>
+												</div>
+											</div>
+											<div class="widget-summary-col">
+												<div class="summary">
+													<h4 class="title">Open Signals (Closed)</h4>
+													<div class="info">
+														<strong class="amount" id="openSigsCount">0</strong> (<span id="closedSigsCount">0</span>)
+													</div>
+												</div>
+												<div class="summary-footer">
+													<a class="text-muted text-uppercase" href="#sigsTab">(view all)</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</section>
+							</div>
+							<div class="col-md-12 col-lg-6 col-xl-6">
+								<section class="panel panel-featured-left panel-featured-quartenary">
+									<div class="panel-body">
+										<div class="widget-summary">
+											<div class="widget-summary-col widget-summary-col-icon">
+												<div class="summary-icon bg-quartenary">
+													<i class="fa fa-user"></i>
+												</div>
+											</div>
+											<div class="widget-summary-col">
+												<div class="summary">
+													<h4 class="title">Today's Visitors</h4>
+													<div class="info">
+														<strong class="amount">3765</strong>
+													</div>
+												</div>
+												<div class="summary-footer">
+													<a class="text-muted text-uppercase">(report)</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</section>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<section class="panel">
+							<header class="panel-heading">
+								<div class="panel-actions">
+									<a href="#" class="fa fa-caret-down"></a>
+									<a href="#" class="fa fa-times"></a>
+								</div>
+
+								<h2 class="panel-title">Bot Console Log</h2>
+
+							</header>
+							<div class="panel-body">
+
+								<!-- Flot: Basic -->
+								<div id="log"></div>
+								<input id="msg" type="textbox" onkeypress="onkey(event)" />
+								<button onclick="send()">Send</button>
+								<button onclick="quit()">Quit</button>
+								<button onclick="reconnect()">Reconnect</button>
+							</div>
+						</section>
+					</div>
+					<div class="col-md-6">
+						<section class="panel">
+							<header class="panel-heading">
+								<div class="panel-actions">
+									<a href="#" class="fa fa-caret-down"></a>
+									<a href="#" class="fa fa-times"></a>
+								</div>
+								<h2 class="panel-title">Running Instances</h2>
+								<p class="panel-subtitle"><a class="mb-xs mt-xs mr-xs modal-with-zoom-anim " href="#modalAnimStopAll"> <i class="fa fa-power-off mr-xs"></i> <span id="startStop">Stop</span></a></p>
+							</header>
+							<div class="panel-body">
+
+								<!-- Flot: Curves -->
+
+
+
+								<div class="panel-group" id="accordion2">
+									<div class="panel panel-accordion panel-accordion-primary">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse2One" aria-expanded="false">
+													<i class="fa fa-star"></i> Donec tellus massa
+												</a>
+											</h4>
+										</div>
+										<div id="collapse2One" class="accordion-body collapse" aria-expanded="false" style="height: 0px;">
+											<div class="panel-body">
+												Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+							</div>
+						</section>
+					</div>
+				</div>
+
+				<div class="row" id="sigsTab">
+					<div class="col-md-12 col-sm-12 col-lg-12">
+						<div class="tabs">
+							<ul class="nav nav-tabs nav-justified">
+								<li class="active">
+									<a href="#real_trades1" data-toggle="tab" class="text-center"><i class="fa fa-star"></i> Real Trades</a>
+								</li>
+								<li>
+									<a href="#simulator_trades1" data-toggle="tab" class="text-center">Simulation Trades</a>
+								</li>
+					
+							</ul>
+							<div class="tab-content">
+								<div id="simulator_trades1" class="tab-pane">
+									<h2>Open Signals</h2>
+									<table class="table table-no-more table-bordered table-striped mb-none">
+										<thead>
+											<tr>
+												<th>Actions</th>
+												<th>Date</th>
+												<th>Timeframe</th>
+												<th>Market</th>
+												<th>Profit/Loss %</th>
+												<th>Strategy</th>
+												<th>Price</th>
+												<th>Purchase Price</th>
+												<th>Exchange</th>
+											</tr>
+										</thead>
+										<tbody id="simulator_trades_open">
+											<!--<tr>
+<td data-title="Code">AAC</td>
+<td data-title="Company" class="hidden-xs hidden-sm">AUSTRALIAN AGRICULTURAL COMPANY LIMITED.</td>
+<td data-title="Price" class="text-right">$1.38</td>
+<td data-title="Change" class="text-right hidden-xs hidden-sm">-0.01</td>
+<td data-title="Change %" class="text-right">-0.36%</td>
+<td data-title="Open" class="text-right">$1.39</td>
+<td data-title="High" class="text-right hidden-xs hidden-sm">$1.39</td>
+<td data-title="Low" class="text-right hidden-xs hidden-sm">$1.38</td>
+<td data-title="Volume" class="text-right">9,395</td>
+</tr>-->
+
+										</tbody>
+									</table>
+									<h2>Closed Signals</h2>
+									<table class="table table-no-more table-bordered table-striped mb-none">
+										<thead>
+											<tr>
+												<th>Date (Total Time)</th>
+												<th>Timeframe</th>
+												<th>Market</th>
+												<th>Profit/Loss %</th>
+												<th>Strategy</th>
+												<th>Purchase Price</th>
+												<th>Sell Price</th>
+												<th>Exchange</th>
+											</tr>
+										</thead>
+										<tbody id="simulator_trades_closed">
+											<!--<tr>
+<td data-title="Code">AAC</td>
+<td data-title="Company" class="hidden-xs hidden-sm">AUSTRALIAN AGRICULTURAL COMPANY LIMITED.</td>
+<td data-title="Price" class="text-right">$1.38</td>
+<td data-title="Change" class="text-right hidden-xs hidden-sm">-0.01</td>
+<td data-title="Change %" class="text-right">-0.36%</td>
+<td data-title="Open" class="text-right">$1.39</td>
+<td data-title="High" class="text-right hidden-xs hidden-sm">$1.39</td>
+<td data-title="Low" class="text-right hidden-xs hidden-sm">$1.38</td>
+<td data-title="Volume" class="text-right">9,395</td>
+</tr>-->
+
+										</tbody>
+									</table>
+								</div>
+								
+								<div id="real_trades1" class="tab-pane active">
+									<h2>Open Signals</h2>
+									<table class="table table-no-more table-bordered table-striped mb-none">
+										<thead>
+											<tr>
+												<th>Actions</th>
+												<th>Date</th>
+												<th>Timeframe</th>
+												<th>Market</th>
+												<th>Profit/Loss %</th>
+												<th>Strategy</th>
+												<th>Price</th>
+												<th>Purchase Price</th>
+												<th>Exchange</th>
+											</tr>
+										</thead>
+										<tbody id="real_trades_open">
+											<!--<tr>
+<td data-title="Code">AAC</td>
+<td data-title="Company" class="hidden-xs hidden-sm">AUSTRALIAN AGRICULTURAL COMPANY LIMITED.</td>
+<td data-title="Price" class="text-right">$1.38</td>
+<td data-title="Change" class="text-right hidden-xs hidden-sm">-0.01</td>
+<td data-title="Change %" class="text-right">-0.36%</td>
+<td data-title="Open" class="text-right">$1.39</td>
+<td data-title="High" class="text-right hidden-xs hidden-sm">$1.39</td>
+<td data-title="Low" class="text-right hidden-xs hidden-sm">$1.38</td>
+<td data-title="Volume" class="text-right">9,395</td>
+</tr>-->
+
+										</tbody>
+									</table>
+									<h2>Closed Signals</h2>
+									<table class="table table-no-more table-bordered table-striped mb-none">
+										<thead>
+											<tr>
+												<th>Date (Total Time)</th>
+												<th>Timeframe</th>
+												<th>Market</th>
+												<th>Profit/Loss %</th>
+												<th>Strategy</th>
+												<th>Purchase Price</th>
+												<th>Sell Price</th>
+												<th>Exchange</th>
+											</tr>
+										</thead>
+										<tbody id="real_trades_closed">
+											<!--<tr>
+<td data-title="Code">AAC</td>
+<td data-title="Company" class="hidden-xs hidden-sm">AUSTRALIAN AGRICULTURAL COMPANY LIMITED.</td>
+<td data-title="Price" class="text-right">$1.38</td>
+<td data-title="Change" class="text-right hidden-xs hidden-sm">-0.01</td>
+<td data-title="Change %" class="text-right">-0.36%</td>
+<td data-title="Open" class="text-right">$1.39</td>
+<td data-title="High" class="text-right hidden-xs hidden-sm">$1.39</td>
+<td data-title="Low" class="text-right hidden-xs hidden-sm">$1.38</td>
+<td data-title="Volume" class="text-right">9,395</td>
+</tr>-->
+
+										</tbody>
+									</table>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+<div id="inst_modals"></div>
+				<div id="modalAnimStopAll" class="zoom-anim-dialog modal-block modal-block-primary mfp-hide">
+					<section class="panel">
+						<header class="panel-heading">
+							<h2 class="panel-title">Are you sure?</h2>
+						</header>
+						<div class="panel-body">
+							<div class="modal-wrapper">
+								<div class="modal-icon"> <i class="fa fa-question-circle"></i> </div>
+								<div class="modal-text">
+									<p>Are you sure that you want to stop ALL bot instances (Bot framework will still be running, this is NOT SHUTDOWN) ?</p>
+								</div>
+							</div>
+						</div>
+						<footer class="panel-footer">
+							<div class="row">
+								<div class="col-md-12 text-right"> <button class="btn btn-primary modal-confirm" id="startStopModalBtn" >Confirm</button> <button class="btn btn-default modal-dismiss">Cancel</button> </div>
+							</div>
+						</footer>
+					</section>
+				</div>
+				<div class="row">
+
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						<section class="panel">
+							<header class="panel-heading panel-heading-transparent">
+								<div class="panel-actions">
+									<a href="#" class="fa fa-caret-down"></a>
+									<a href="#" class="fa fa-times"></a>
+								</div>
+
+								<h2 class="panel-title">Live Coins Scan Results</h2>
+							</header>
+							<div class="panel-body">
+								<table class="table table-no-more table-bordered table-striped mb-none">
+									<thead>
+										<tr>
+											<th>Symbol</th>
+											<th>Price</th>
+											<th>Strategies</th>
+										</tr>
+									</thead>
+									<tbody id="latestScans">
+										<!--<tr>
+<td data-title="Code">AAC</td>
+<td data-title="Company" class="hidden-xs hidden-sm">AUSTRALIAN AGRICULTURAL COMPANY LIMITED.</td>
+<td data-title="Price" class="text-right">$1.38</td>
+<td data-title="Change" class="text-right hidden-xs hidden-sm">-0.01</td>
+<td data-title="Change %" class="text-right">-0.36%</td>
+<td data-title="Open" class="text-right">$1.39</td>
+<td data-title="High" class="text-right hidden-xs hidden-sm">$1.39</td>
+<td data-title="Low" class="text-right hidden-xs hidden-sm">$1.38</td>
+<td data-title="Volume" class="text-right">9,395</td>
+</tr>-->
+									</tbody>
+								</table>
+							</div>
+						</section>
+					</div>
+				</div>
+				<script src="assets/vendor/jquery/jquery.js"></script>
+<script src="assets/vendor/jquery-sparkline/jquery.sparkline.js"></script>
+<script>
+
+	</script>

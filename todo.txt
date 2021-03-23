@@ -1,0 +1,6 @@
+to do:
+get thigs from prod to here
+fix the buy and sell price, when buyng, make sure the actual price + max spread is paid and no more, get the real purchase price whn done, when selling do not allow sell price to be lower the sell price - spread, get the real selling price, to be more accurate
+
+
+the info that arrives to telegram about ended trades prodif tloss %, needs to be reduced with the comision of binance (0.3, checlk before, maybe cheaper)

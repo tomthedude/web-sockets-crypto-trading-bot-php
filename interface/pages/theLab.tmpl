@@ -1,0 +1,261 @@
+
+
+
+
+<div class="col-md-12 col-lg-12" id="theLabPage">
+</div>
+<div class="col-md-12 col-lg-12" id="theLab">
+
+							<div class="tabs">
+								<ul class="nav nav-tabs tabs-primary">
+									<li class="active">
+										<a href="#overview" data-toggle="tab" aria-expanded="true">Overview</a>
+									</li>
+									<li class="">
+										<a href="#edit" data-toggle="tab" aria-expanded="false">Create Strategy</a>
+									</li>
+								</ul>
+								<div class="tab-content">
+									<div id="overview" class="tab-pane active">
+							<a onclick="getElmByID('links').innerHTML='';socketBot.send('finishedBacktestingsList LTC');">Filter</a>
+
+					<section class="panel">
+						<div class="panel-body tab-content">
+							<div id="access-log" class="tab-pane active">
+								<table class="table table-striped table-no-more table-bordered  mb-none">
+									<thead>
+										<tr>
+											<th style="width: 10%"><span class="text-normal text-sm">Type</span></th>
+											<th style="width: 15%"><span class="text-normal text-sm">Date</span></th>
+											<th><span class="text-normal text-sm">Message</span></th>
+										</tr>
+									</thead>
+									<tbody class="log-viewer" id="links">
+
+									</tbody>
+								</table>
+							</div>
+							
+							
+						</div>
+					</section>
+									</div>
+									<div id="edit" class="tab-pane">
+
+										<form class="form-horizontal" method="get">
+											<h4 class="mb-xlg">Personal Information</h4>
+											<fieldset>
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="profileFirstName">First Name</label>
+													<div class="col-md-8">
+														<input type="text" class="form-control" id="profileFirstName">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="profileLastName">Last Name</label>
+													<div class="col-md-8">
+														<input type="text" class="form-control" id="profileLastName">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="profileAddress">Address</label>
+													<div class="col-md-8">
+														<input type="text" class="form-control" id="profileAddress">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="profileCompany">Company</label>
+													<div class="col-md-8">
+														<input type="text" class="form-control" id="profileCompany">
+													</div>
+												</div>
+											</fieldset>
+											<hr class="dotted tall">
+											<h4 class="mb-xlg">About Yourself</h4>
+											<fieldset>
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="profileBio">Biographical Info</label>
+													<div class="col-md-8">
+														<textarea class="form-control" rows="3" id="profileBio"></textarea>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-xs-3 control-label mt-xs pt-none">Public</label>
+													<div class="col-md-8">
+														<div class="checkbox-custom checkbox-default checkbox-inline mt-xs">
+															<input type="checkbox" checked="" id="profilePublic">
+															<label for="profilePublic"></label>
+														</div>
+													</div>
+												</div>
+											</fieldset>
+											<hr class="dotted tall">
+											<h4 class="mb-xlg">Change Password</h4>
+											<fieldset class="mb-xl">
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="profileNewPassword">New Password</label>
+													<div class="col-md-8">
+														<input type="text" class="form-control" id="profileNewPassword">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="profileNewPasswordRepeat">Repeat New Password</label>
+													<div class="col-md-8">
+														<input type="text" class="form-control" id="profileNewPasswordRepeat">
+													</div>
+												</div>
+											</fieldset>
+											<div class="panel-footer">
+												<div class="row">
+													<div class="col-md-9 col-md-offset-3">
+														<button type="submit" class="btn btn-primary">Submit</button>
+														<button type="reset" class="btn btn-default">Reset</button>
+													</div>
+												</div>
+											</div>
+
+										</form>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<script>
+						
+						newLabPage = '';
+
+	function generateLabResult(result){
+		coins_to_print_arr =[];
+		profit_loss = [];
+		names =[];
+		total_trades=[];
+		coins_top_html = "";
+		coins_info_html = "";
+		total_closed_signals=0;
+		total_profit_loss_pr=0;
+		exchange="";
+		trades_string_html="";
+		timeframe="";
+		starts = [];
+		i=0;
+		j=0;
+
+		coin_names_arr = Object.keys(result);
+			coin_names_arr.forEach(function (coin_name) {
+				coins_to_print_arr[coin_name] = result[coin_name];
+						
+			});
+		//alert(typeof coins_to_print_arr);
+		names = Object.keys(coins_to_print_arr);
+		names.forEach(function (coin_name){
+			//total_trades[coin_name] = 0;
+			profit_loss[coin_name] = 0;
+			coins_data = coins_to_print_arr[coin_name];//trades data
+			trades_string_html = "";
+		 coins_data_keys = Object.keys(coins_data);
+		 j=0;
+			coins_data_keys.forEach(function (key){
+				j++;
+				trade_data = coins_data[key];
+				console.log(trade_data);
+				if(trade_data.hasOwnProperty("profit_loss_percent")){
+					 profit_loss[coin_name] += trade_data.profit_loss_percent;
+				if(trade_data.profit_loss_percent>0){
+	yabg = "success";
+}
+else if(trade_data.profit_loss_percent<0){
+	yabg = "danger";
+}
+		else{
+			yabg = "warning";
+		}
+						open_t = trade_data.buy.opened;
+						closed_t = trade_data.sell.close_time;
+						
+						trades_string_html +='<li class="'+yabg+'"> <div class="tm-box"> <p class="text-muted mb-none">'+open_t+' - '+closed_t+'</p> <p>Buy Price: '+trade_data.buy.price+'<br /> Sell Price: '+trade_data.sell.price+'<br /> Profit / Loss '+ trade_data.profit_loss_percent+'%  </p> </div> </li>';
+				}
+				else{ 
+					if(!isNaN(trade_data)){// if arrived to profit_loss
+						profit_loss[coin_name] += trade_data;
+					}
+					else{// if arrived to details
+						total_trades[coin_name] = trade_data.total_closed_signals-1;
+						//total_closed_signals+=total_trades[coin_name];
+						exchange = trade_data.exchange;
+						timeframe = trade_data.timeframe;
+						starts[trade_data.startegy] = trade_data.startegy;	
+						//alert(trade_data.startegy);
+						//alert(trade_data.timeframe);
+
+						
+
+					}
+
+					
+					// strategy (for signals batch ) = trade_data.strategy
+				}
+
+			});
+						if(j>0){
+						total_closed_signals+=j;
+							total_trades[coin_name] = j;
+							
+						}
+				if(i===0){
+					coins_top_html += '<li class="active"> ';
+					coins_info_html += '<div id="'+coin_name+'" class="tab-pane active">';
+					i++;
+				}
+				else{
+					coins_top_html += '<li> ';
+					coins_info_html += '<div id="'+coin_name+'" class="tab-pane">';
+				}
+				coins_top_html += '<a href="#'+coin_name+'" data-toggle="tab" aria-expanded="true">'+coin_name+' ('+total_trades[coin_name]+')</a> </li>';
+			if(profit_loss[coin_name].toFixed(2)>0){
+	bg_pl_c = "success";
+}
+else if(profit_loss[coin_name].toFixed(2)<0){
+	bg_pl_c = "danger";
+}
+		else{
+			bg_pl_c = "warning";
+		}
+			coins_info_html +='  <h4 class="mb-md">Trades on The Graph</h4> <ul class="simple-card-list mb-xlg"> <li class="primary"> <h3>'+total_trades[coin_name]+'</h3> <p>Total Trades.</p> </li> <li class="'+bg_pl_c+'"> <h3>'+profit_loss[coin_name].toFixed(2)+'</h3> <p>Profit / Loss %.</p> </li> </ul> <h4 class="mb-xlg">Timeline</h4> <div class="timeline timeline-simple mt-xlg mb-md"> <div class="tm-body"> <div class="tm-title"> <h3 class="h5 text-uppercase">November 2013</h3> </div> <ol class="tm-items"> '+trades_string_html+'  </ol> </div> </div> </div> ';
+			
+		});
+		console.log(coins_to_print_arr);
+			pl_names = Object.keys(profit_loss);
+			max = -100;
+			
+			pl_names.forEach(function(pl_name){
+				//alert(profit_loss[pl_name]);
+				total_profit_loss_pr+=profit_loss[pl_name];
+				if(max<profit_loss[pl_name]){
+					max = profit_loss[pl_name];
+					top_gainer = pl_name;
+				}
+			});
+			strats_names_string = '<li class="completed">Timeframe: '+timeframe+'</li>';
+			strat_names = Object.keys(starts);
+			strat_names.forEach(function(strat_name){
+				//alert(profit_loss[pl_name]);
+				strats_names_string += '<li class="completed">'+starts[strat_name]+'</li>';
+				});
+			top_gainer_trades = total_trades[top_gainer];
+if(total_profit_loss_pr>0){
+	bg_tplpr = "success";
+}
+else if(total_profit_loss_pr<0){
+	bg_tplpr = "danger";
+}
+		else{
+			bg_tplpr = "warning";
+		}
+				
+newLabPage = '<div class="row"> <div class="col-md-4 col-lg-3"> <section class="panel"> <div class="panel-body"> <div class="thumb-info mb-md"> <img src="assets/images/'+exchange+'.png" class="rounded img-responsive" alt="John Doe"> <div class="thumb-info-title"> <span class="thumb-info-inner">'+top_gainer+'</span> <span class="thumb-info-type">'+top_gainer_trades+' trades gain/loss of  '+max.toFixed(2)+'</span> </div> </div> <div class="widget-toggle-expand mb-md"> <div class="widget-header"> <h6>'+type+'</h6> <div class="widget-toggle">+</div> </div> <div class="widget-content-collapsed"> <div class="progress progress-xs light"> <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"> 60% </div> </div> </div> <div class="widget-content-expanded"> <ul class="simple-todo-list"> '+strats_names_string+' </ul> </div> </div> <hr class="dotted short"> <h6 class="text-muted">About</h6> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis vulputate quam. Interdum et malesuada</p> <div class="clearfix"> <a class="text-uppercase text-muted pull-right" href="#">(View All)</a> </div> <hr class="dotted short"> <div class="social-icons-list"> <a rel="tooltip" data-placement="bottom" target="_blank" href="http://www.facebook.com" data-original-title="Facebook"><i class="fa fa-facebook"></i><span>Facebook</span></a> <a rel="tooltip" data-placement="bottom" href="http://www.twitter.com" data-original-title="Twitter"><i class="fa fa-twitter"></i><span>Twitter</span></a> <a rel="tooltip" data-placement="bottom" href="http://www.linkedin.com" data-original-title="Linkedin"><i class="fa fa-linkedin"></i><span>Linkedin</span></a> </div> </div> </section> <section class="panel"> <header class="panel-heading"> <div class="panel-actions"> <a href="#" class="fa fa-caret-down"></a> <a href="#" class="fa fa-times"></a> </div> <h2 class="panel-title"> <span class="label label-primary label-sm text-normal va-middle mr-sm">198</span> <span class="va-middle">Friends</span> </h2> </header> <div class="panel-body"> <div class="content"> <ul class="simple-user-list"> <li> <figure class="image rounded"> <img src="assets/images/!sample-user.jpg" alt="Joseph Doe Junior" class="img-circle"> </figure> <span class="title">Joseph Doe Junior</span> <span class="message truncate">Lorem ipsum dolor sit.</span> </li> <li> <figure class="image rounded"> <img src="assets/images/!sample-user.jpg" alt="Joseph Junior" class="img-circle"> </figure> <span class="title">Joseph Junior</span> <span class="message truncate">Lorem ipsum dolor sit.</span> </li> <li> <figure class="image rounded"> <img src="assets/images/!sample-user.jpg" alt="Joe Junior" class="img-circle"> </figure> <span class="title">Joe Junior</span> <span class="message truncate">Lorem ipsum dolor sit.</span> </li> <li> <figure class="image rounded"> <img src="assets/images/!sample-user.jpg" alt="Joseph Doe Junior" class="img-circle"> </figure> <span class="title">Joseph Doe Junior</span> <span class="message truncate">Lorem ipsum dolor sit.</span> </li> </ul> <hr class="dotted short"> <div class="text-right"> <a class="text-uppercase text-muted" href="#">(View All)</a> </div> </div> </div> <div class="panel-footer"> <div class="input-group input-search"> <input type="text" class="form-control" name="q" id="q" placeholder="Search..."> <span class="input-group-btn"> <button class="btn btn-default" type="submit"><i class="fa fa-search"></i> </button> </span> </div> </div> </section> <section class="panel"> <header class="panel-heading"> <div class="panel-actions"> <a href="#" class="fa fa-caret-down"></a> <a href="#" class="fa fa-times"></a> </div> <h2 class="panel-title">Popular Posts</h2> </header> <div class="panel-body"> <ul class="simple-post-list"> <li> <div class="post-image"> <div class="img-thumbnail"> <a href="#"> <img src="assets/images/post-thumb-1.jpg" alt=""> </a> </div> </div> <div class="post-info"> <a href="#">Nullam Vitae Nibh Un Odiosters</a> <div class="post-meta"> Jan 10, 2013 </div> </div> </li> <li> <div class="post-image"> <div class="img-thumbnail"> <a href="#"> <img src="assets/images/post-thumb-2.jpg" alt=""> </a> </div> </div> <div class="post-info"> <a href="#">Vitae Nibh Un Odiosters</a> <div class="post-meta"> Jan 10, 2013 </div> </div> </li> <li> <div class="post-image"> <div class="img-thumbnail"> <a href="#"> <img src="assets/images/post-thumb-3.jpg" alt=""> </a> </div> </div> <div class="post-info"> <a href="#">Odiosters Nullam Vitae</a> <div class="post-meta"> Jan 10, 2013 </div> </div> </li> </ul> </div> </section> </div> <div class="col-md-8 col-lg-6"> <div class="tabs"> <ul class="nav nav-tabs tabs-primary"> '+coins_top_html+' </ul> <div class="tab-content"> '+coins_info_html+' </div> </div> </div> <div class="col-md-12 col-lg-3"> <h4 class="mb-md">Sale Stats</h4> <ul class="simple-card-list mb-xlg"> <li class="primary"> <h3>'+total_closed_signals+'</h3> <p>Total Trades.</p> </li> <li class="'+bg_tplpr+'"> <h3>'+total_profit_loss_pr.toFixed(2)+'</h3> <p>Total Profit / Loss %.</p> </li> <li class="primary"> <h3>'+(total_profit_loss_pr/total_closed_signals).toFixed(2)+'</h3> <p>Avg profit/loss % per trade.</p> </li> </ul> <h4 class="mb-md">Projects</h4> <ul class="simple-bullet-list mb-xlg"> <li class="red"> <span class="title">Porto Template</span> <span class="description truncate">Lorem ipsom dolor sit.</span> </li> <li class="green"> <span class="title">Tucson HTML5 Template</span> <span class="description truncate">Lorem ipsom dolor sit amet</span> </li> <li class="blue"> <span class="title">Porto HTML5 Template</span> <span class="description truncate">Lorem ipsom dolor sit.</span> </li> <li class="orange"> <span class="title">Tucson Template</span> <span class="description truncate">Lorem ipsom dolor sit.</span> </li> </ul> <h4 class="mb-md">Messages</h4> <ul class="simple-user-list mb-xlg"> <li> <figure class="image rounded"> <img src="assets/images/!sample-user.jpg" alt="Joseph Doe Junior" class="img-circle"> </figure> <span class="title">Joseph Doe Junior</span> <span class="message">Lorem ipsum dolor sit.</span> </li> <li> <figure class="image rounded"> <img src="assets/images/!sample-user.jpg" alt="Joseph Junior" class="img-circle"> </figure> <span class="title">Joseph Junior</span> <span class="message">Lorem ipsum dolor sit.</span> </li> <li> <figure class="image rounded"> <img src="assets/images/!sample-user.jpg" alt="Joe Junior" class="img-circle"> </figure> <span class="title">Joe Junior</span> <span class="message">Lorem ipsum dolor sit.</span> </li> <li> <figure class="image rounded"> <img src="assets/images/!sample-user.jpg" alt="Joseph Doe Junior" class="img-circle"> </figure> <span class="title">Joseph Doe Junior</span> <span class="message">Lorem ipsum dolor sit.</span> </li> </ul> </div> </div>';		
+		
+		return newLabPage;
+	}
+
+
+</script>
