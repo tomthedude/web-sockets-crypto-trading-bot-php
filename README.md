@@ -22,7 +22,7 @@ trader.real_precision=8
 
 cd /
 
-git clone https://github.com/tomthedude/php-crypto-trading-bot-v2
+git clone https://github.com/tomthedude/web-sockets-crypto-trading-bot-php.git
 
 
 Edit my_conf.json:
